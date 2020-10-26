@@ -1,0 +1,18 @@
+Package: icesConnect
+Title: Provides User Tokens for Access to Serveral ICES Web Services
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "Colin",
+           family = "Millar",
+           role = c("aut", "cre"),
+           email = "colin.millar@ices.dk",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Provides user tokens for ICES web services that require
+  authentication and authorization.  Web services covered by this
+  package are ICES VMS database, and the ICES SharePoint site.
+Imports: whoami, keyring, httr
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
