@@ -4,6 +4,7 @@
 #'
 #' @param url PARAM_DESCRIPTION
 #' @param retry PARAM_DESCRIPTION, Default: TRUE
+#' @param quiet should the request be made queitly
 #'
 #' @return httr response object
 #'
@@ -19,12 +20,11 @@
 #'
 #' @export
 
-ices_get_jwt <- function(url, retry = TRUE) {
+ices_get_jwt <- function(url, retry = TRUE, quiet = FALSE) {
 
   jwt <- ices_token()
   out <-
     if (nzchar(jwt)) {
-
       httr::GET(
         url,
         httr::add_headers(Authorization = paste("Bearer", jwt))
@@ -33,13 +33,16 @@ ices_get_jwt <- function(url, retry = TRUE) {
       httr::GET(url)
     }
 
-  httr::message_for_status(out)
+  if (!quiet) {
+    httr::message_for_status(out)
+    message("\n")
+  }
 
   if (httr::status_code(out) == 404 & retry) {
     # try again - sometimes the server seems to return 404 on the
     # first request
     message("Server not responding, doing one retry.")
-    vms_get(url, retry = FALSE)
+    ices_get_jwt(url, retry = FALSE)
   }
 
   msg_401 <-
@@ -50,9 +53,16 @@ ices_get_jwt <- function(url, retry = TRUE) {
       "to create your personal access token.\n"
     )
 
+  msg_403 <-
+    paste0(
+      ": You don't have access to this resource. Please run:\n",
+      "    icesConnect::ices_token()\n",
+      "to create or update your personal access token.\n"
+    )
+
   tryCatch(httr::stop_for_status(out),
     http_404 = function(c) message(": Url doesn't exist - the server may not responding."),
-    http_403 = function(c) message(": You need to authenticate - run update_token(...)"),
+    http_403 = function(c) message(msg_403),
     http_401 = function(c) message(msg_401),
     http_400 = function(c) message(": Check function arguments, probably a user error."),
     http_500 = function(c) message(": Something went wrong on the server :(")

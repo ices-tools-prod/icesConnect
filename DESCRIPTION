@@ -10,7 +10,7 @@ Authors@R:
 Description: Provides user tokens for ICES web services that require
   authentication and authorization.  Web services covered by this
   package are ICES VMS database, and the ICES SharePoint site.
-Imports: whoami, keyring, httr
+Imports: whoami, keyring, httr, base64enc, jsonlite, getPass
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

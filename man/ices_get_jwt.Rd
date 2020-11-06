@@ -4,12 +4,14 @@
 \alias{ices_get_jwt}
 \title{ices_get_jwt}
 \usage{
-ices_get_jwt(url, retry = TRUE)
+ices_get_jwt(url, retry = TRUE, quiet = FALSE)
 }
 \arguments{
 \item{url}{PARAM_DESCRIPTION}
 
 \item{retry}{PARAM_DESCRIPTION, Default: TRUE}
+
+\item{quiet}{should the request be made queitly}
 }
 \value{
 httr response object
