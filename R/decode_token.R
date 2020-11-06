@@ -21,3 +21,8 @@ token_expiration <- function(jwt) {
 
   as.POSIXct(claims$exp, origin = "1970-01-01")
 }
+
+token_user <- function(jwt) {
+  claims <- decode_token(jwt)
+  claims$sub
+}

@@ -4,10 +4,18 @@
 \alias{ices_get_jwt}
 \title{ices_get_jwt}
 \usage{
-ices_get_jwt(url, retry = TRUE, quiet = FALSE)
+ices_get_jwt(
+  url,
+  username = getOption("ices.username"),
+  retry = TRUE,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{url}{PARAM_DESCRIPTION}
+
+\item{username}{the ices username to perform the request as,
+Default: getOption("ices.username")}
 
 \item{retry}{PARAM_DESCRIPTION, Default: TRUE}
 
@@ -20,8 +28,10 @@ httr response object
 Perform a get request to a url using a javascript web token for authentication
 }
 \examples{
+\dontrun{
+# this function is interactive and asks the user for a password
 ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
-
+}
 }
 \seealso{
 \code{\link[icesConnect]{ices_token}}

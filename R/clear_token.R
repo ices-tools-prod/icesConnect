@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' ices_cleartoken()
+#' clear_token()
 #' }
 #'
 #' @seealso
@@ -28,5 +28,14 @@ clear_token <- function(username = getOption("ices.username")) {
     username <- whoami::username()
   }
 
-  keyring::key_delete("ices_token", username = username)
+  usernames <-
+    grep(
+      paste0(username, "_[0-9]+"), keyring::key_list()$username,
+      value = TRUE
+    )
+
+  for (i in seq_along(usernames)) {
+    keyring::key_delete("ices_token", username = usernames[i])
+  }
+
 }

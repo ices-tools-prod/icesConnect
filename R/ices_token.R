@@ -33,7 +33,8 @@ ices_token <- function(username = getOption("ices.username"), ...) {
   valid_token <- FALSE
   token <- ""
   if (has_token(username)) {
-    token <- keyring::key_get("ices_token", username)
+    usernames <- grep(paste0(username, "_[0-9]+"), keyring::key_list()$username, value = TRUE)
+    token <- paste(sapply(usernames, keyring::key_get, service = "ices_token"), collapse = "")
 
     # add 10s to system time so we have time to perform the request
     valid_token <- token_expiration(token) > (Sys.time() + 10)
@@ -51,14 +52,27 @@ ices_token <- function(username = getOption("ices.username"), ...) {
 
     if (httr::status_code(ret) == 200) {
 
-      # set token in keyring
-      keyring::key_set_with_value(
-        service = "ices_token",
-        username = username,
-        password = httr::content(ret)$token
-      )
+      tokens <- httr::content(ret)$token
+      if (nchar(tokens) > 2500) {
+        tokens <-
+          substring(
+            tokens,
+            seq(1, nchar(tokens), by = 2500),
+            seq(1, nchar(tokens), by = 2500) - 1 + 2500
+          )
+      }
 
-      token <- keyring::key_get("ices_token", username)
+      for (i in seq_along(tokens)) {
+        # set token in keyring
+        keyring::key_set_with_value(
+          service = "ices_token",
+          username = paste0(username, "_", i),
+          password = tokens[i]
+        )
+      }
+
+      usernames <- grep(paste0(username, "_[0-9]+"), keyring::key_list()$username, value = TRUE)
+      token <- paste(sapply(usernames, keyring::key_get, service = "ices_token"), collapse = "")
     }
   }
 

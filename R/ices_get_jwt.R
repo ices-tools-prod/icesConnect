@@ -3,14 +3,18 @@
 #' Perform a get request to a url using a javascript web token for authentication
 #'
 #' @param url PARAM_DESCRIPTION
+#' @param username the ices username to perform the request as,
+#'   Default: getOption("ices.username")
 #' @param retry PARAM_DESCRIPTION, Default: TRUE
 #' @param quiet should the request be made queitly
 #'
 #' @return httr response object
 #'
 #' @examples
+#' \dontrun{
+#' # this function is interactive and asks the user for a password
 #' ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
-#'
+#' }
 #' @seealso
 #'  \code{\link[icesConnect]{ices_token}}
 #'  \code{\link[httr]{GET}},\code{\link[httr]{add_headers}},\code{\link[httr]{stop_for_status}},\code{\link[httr]{status_code}}
@@ -20,16 +24,23 @@
 #'
 #' @export
 
-ices_get_jwt <- function(url, retry = TRUE, quiet = FALSE) {
+ices_get_jwt <- function(url, username = getOption("ices.username"),
+  retry = TRUE, quiet = FALSE) {
 
-  jwt <- ices_token()
+  jwt <- ices_token(username)
   out <-
     if (nzchar(jwt)) {
+      if (!quiet) {
+        message("using token for user ICES\\", token_user(jwt))
+      }
       httr::GET(
         url,
         httr::add_headers(Authorization = paste("Bearer", jwt))
       )
     } else {
+      if (!quiet) {
+        message("no token used")
+      }
       httr::GET(url)
     }
 

@@ -4,7 +4,7 @@ has_token <- function(username) {
   keys <- keyring::key_list()
 
   if (nrow(keys)) {
-    return(username %in% keys$username[keys$service == "ices_token"])
+    return(paste0(username, "_1") %in% keys$username[keys$service == "ices_token"])
   }
 
   FALSE

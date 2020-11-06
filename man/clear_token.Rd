@@ -18,7 +18,7 @@ Deletes the token from the key ring.
 }
 \examples{
 \dontrun{
-ices_cleartoken()
+clear_token()
 }
 
 }
