@@ -2,6 +2,9 @@
 
 export(clear_token)
 export(ices_get_jwt)
+export(ices_patch_jwt)
+export(ices_post_jwt)
+export(ices_request_jwt)
 export(ices_token)
 importFrom(base64enc,base64decode)
 importFrom(getPass,getPass)

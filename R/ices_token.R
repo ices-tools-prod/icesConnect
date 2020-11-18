@@ -26,8 +26,22 @@
 ices_token <- function(username = getOption("ices.username"), ...) {
 
   if (is.null(username)) {
-    # NULL means use system username
-    username <- whoami::username()
+    username <- getOption("icesTAFWeb.username")
+    if (is.null(username)) {
+      # NULL means use system username
+      username <- whoami::username()
+      not.usermessaged <-
+        is.null(getOption("ices.usermessaged")) ||
+          !getOption("ices.usermessaged")
+      if (not.usermessaged) {
+        options(ices.usermessaged = TRUE)
+        ## message to user about adding username to options
+        message(
+          "using system username: ", username,
+          "\nConsider adding a default username using:\n\toptions(ices.username = <add username here>)"
+        )
+      }
+    }
   }
 
   valid_token <- FALSE
