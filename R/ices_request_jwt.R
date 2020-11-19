@@ -86,7 +86,7 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
 
   msg_401 <-
     paste0(
-      ": You don't have access to this resource.\n",
+      "You don't have access to this resource.\n",
       "Invalid or missing token. Please run:\n",
       "    icesConnect::ices_token()\n",
       "to create your personal access token.\n"
@@ -94,7 +94,7 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
 
   msg_403 <-
     paste0(
-      ": You don't have access to this resource. Please run:\n",
+      "You don't have access to this resource. Please run:\n",
       "    icesConnect::ices_token()\n",
       "to create or update your personal access token.\n"
     )
