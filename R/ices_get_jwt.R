@@ -1,7 +1,7 @@
 #' @rdname ices_request_jwt
 #' @export
 ices_get_jwt <- function(url,
-                          username = getOption("ices.username"),
+                          username = NULL,
                           retry = TRUE, quiet = FALSE,
                           verbose = FALSE) {
 
@@ -18,7 +18,7 @@ ices_get_jwt <- function(url,
 #' @rdname ices_request_jwt
 #' @export
 ices_post_jwt <- function(url, body = list(),
-                          username = getOption("ices.username"),
+                          username = NULL,
                           retry = TRUE, quiet = FALSE,
                           verbose = FALSE) {
   out <-
@@ -34,7 +34,7 @@ ices_post_jwt <- function(url, body = list(),
 #' @rdname ices_request_jwt
 #' @export
 ices_patch_jwt <- function(url, body = list(),
-                          username = getOption("ices.username"),
+                          username = NULL,
                           retry = TRUE, quiet = FALSE,
                           verbose = FALSE) {
   out <-

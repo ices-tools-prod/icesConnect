@@ -4,7 +4,7 @@
 \alias{ices_token}
 \title{ices_token}
 \usage{
-ices_token(username = getOption("ices.username"), ...)
+ices_token(username = NULL, ...)
 }
 \arguments{
 \item{username}{the ices username that you require a token for,

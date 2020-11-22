@@ -23,10 +23,10 @@
 #' @importFrom keyring key_get key_set_with_value
 #'
 #' @export
-ices_token <- function(username = getOption("ices.username"), ...) {
+ices_token <- function(username = NULL, ...) {
 
   if (is.null(username)) {
-    username <- getOption("icesTAFWeb.username")
+    username <- getOption("ices.username")
     if (is.null(username)) {
       # NULL means use system username
       username <- whoami::username()

@@ -9,7 +9,7 @@
 \usage{
 ices_get_jwt(
   url,
-  username = getOption("ices.username"),
+  username = NULL,
   retry = TRUE,
   quiet = FALSE,
   verbose = FALSE
@@ -18,7 +18,7 @@ ices_get_jwt(
 ices_post_jwt(
   url,
   body = list(),
-  username = getOption("ices.username"),
+  username = NULL,
   retry = TRUE,
   quiet = FALSE,
   verbose = FALSE
@@ -27,7 +27,7 @@ ices_post_jwt(
 ices_patch_jwt(
   url,
   body = list(),
-  username = getOption("ices.username"),
+  username = NULL,
   retry = TRUE,
   quiet = FALSE,
   verbose = FALSE
