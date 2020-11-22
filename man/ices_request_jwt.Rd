@@ -69,6 +69,7 @@ Perform a get request to a url using a javascript web token for authentication
 \dontrun{
 # this function is interactive and asks the user for a password
 ices_request_jwt("GET", "https://taf.ices.dk/vms/api/gearwidths")
+ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
 }
 }
 \seealso{

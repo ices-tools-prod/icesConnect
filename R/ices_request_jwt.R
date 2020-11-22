@@ -57,7 +57,8 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
     if (!quiet) {
       message("using token for user ICES\\", token_user(jwt))
     }
-    args <- c(args, list(httr::authenticate("", jwt)))
+   #args <- c(args, list(httr::authenticate("", jwt)))
+   args <- c(args, list(httr::add_headers(Authorization = paste("Bearer", jwt))))
   } else {
     if (!quiet) {
       message("no token used")
