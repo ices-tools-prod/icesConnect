@@ -38,7 +38,7 @@ ices_token <- function(username = getOption("ices.username"), ...) {
         ## message to user about adding username to options
         message(
           "using system username: ", username,
-          "\nConsider adding a default username using:\n\toptions(ices.username = <add username here>)"
+          "\nConsider adding a default username using:\n\ticesConnect::set_username(<add username here>)"
         )
       }
     }
