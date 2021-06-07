@@ -66,7 +66,7 @@ ices_token <- function(username = NULL, password = NULL, ...) {
         body =
           list(
             Username = username,
-            Password = if (is.null(password)) user_password(msg) else password
+            Password = if (is.null(password) && interactive()) user_password(msg) else password
           ),
         encode = "json"
       )
