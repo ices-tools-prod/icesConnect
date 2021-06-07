@@ -3,7 +3,10 @@
 #' Stores a user token in the system keyring
 #'
 #' @param username the ices username that you require a token for,
-#'   Default: getOption("ices.username")
+#'   Default: NULL, which results in getOption("ices.username")
+#' @param password the ices username that you require a token for,
+#'   Default: NULL, which results in a dialogue box request for the
+#'   password
 #' @param ... not yet used
 #'
 #' @return character scalar, the token
@@ -23,7 +26,7 @@
 #' @importFrom keyring key_get key_set_with_value
 #'
 #' @export
-ices_token <- function(username = NULL, ...) {
+ices_token <- function(username = NULL, password = NULL, ...) {
 
   if (is.null(username)) {
     username <- getOption("ices.username")
@@ -59,8 +62,12 @@ ices_token <- function(username = NULL, ...) {
     # get a token
     ret <-
       httr::POST(
-        "https://taf.ices.dk/github/auth/token",
-        body = list(Username = username, Password = user_password(msg)),
+        "https://taf.ices.dk/api/auth/token",
+        body =
+          list(
+            Username = username,
+            Password = if (is.null(password)) user_password(msg) else password
+          ),
         encode = "json"
       )
 
@@ -87,6 +94,8 @@ ices_token <- function(username = NULL, ...) {
 
       usernames <- grep(paste0(username, "_[0-9]+"), keyring::key_list()$username, value = TRUE)
       token <- paste(sapply(usernames, keyring::key_get, service = "ices_token"), collapse = "")
+    } else {
+      token <- ""
     }
   }
 

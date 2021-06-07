@@ -4,11 +4,15 @@
 \alias{ices_token}
 \title{ices_token}
 \usage{
-ices_token(username = NULL, ...)
+ices_token(username = NULL, password = NULL, ...)
 }
 \arguments{
 \item{username}{the ices username that you require a token for,
-Default: getOption("ices.username")}
+Default: NULL, which results in getOption("ices.username")}
+
+\item{password}{the ices username that you require a token for,
+Default: NULL, which results in a dialogue box request for the
+password}
 
 \item{...}{not yet used}
 }
