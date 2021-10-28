@@ -93,7 +93,7 @@ ices_token <- function(username = NULL, password = NULL, ...) {
       }
 
       usernames <- grep(paste0(username, "_[0-9]+"), keyring::key_list()$username, value = TRUE)
-      token <- paste(sapply(usernames, keyring::key_get, service = "ices_token"), collapse = "")
+      token <- paste(sapply(sort(usernames), keyring::key_get, service = "ices_token"), collapse = "")
     } else {
       token <- ""
     }

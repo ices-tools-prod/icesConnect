@@ -10,6 +10,7 @@
 #' @param retry PARAM_DESCRIPTION, Default: TRUE
 #' @param quiet suppress informative messages to the console
 #' @param verbose should the http request return verbose output
+#' @param jwt option to supply a token bypassing the ices_token() route
 #'
 #' @return httr response object
 #'
@@ -34,7 +35,8 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
                         username = NULL,
                         retry = TRUE,
                         quiet = FALSE,
-                        verbose = FALSE) {
+                        verbose = FALSE,
+                        jwt = NULL) {
   type <- match.arg(type)
   HTTPFUN <- getExportedValue("httr", type)
 
@@ -43,7 +45,16 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
     message(paste0(type, "ing ... ", url))
   }
 
-  jwt <- ices_token(username)
+  if (is.null(jwt)) {
+    jwt <- ices_token(username)
+    if (!quiet) {
+      message("using token for user ICES\\", token_user(jwt))
+    }
+  } else {
+    if (!quiet) {
+      message("using user supplied token for user ICES\\", token_user(jwt))
+    }
+  }
 
   # set up args
   args <-
@@ -54,11 +65,7 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
     )
 
   if (nzchar(jwt)) {
-    if (!quiet) {
-      message("using token for user ICES\\", token_user(jwt))
-    }
-   #args <- c(args, list(httr::authenticate("", jwt)))
-   args <- c(args, list(httr::add_headers(Authorization = paste("Bearer", jwt))))
+    args <- c(args, list(httr::add_headers(Authorization = paste("Bearer", jwt))))
   } else {
     if (!quiet) {
       message("no token used")

@@ -40,7 +40,8 @@ ices_request_jwt(
   username = NULL,
   retry = TRUE,
   quiet = FALSE,
-  verbose = FALSE
+  verbose = FALSE,
+  jwt = NULL
 )
 }
 \arguments{
@@ -58,6 +59,8 @@ Default: getOption("ices.username")}
 \item{body}{optional body of request}
 
 \item{type}{the type of request to make, GET, POST or PATCH}
+
+\item{jwt}{option to supply a token bypassing the ices_token() route}
 }
 \value{
 httr response object
