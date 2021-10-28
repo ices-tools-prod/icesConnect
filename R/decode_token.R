@@ -8,8 +8,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' jwt <- ices_token()
-#' decode_token(jwt)
+#' decode_token()
 #' }
 #'
 #' @seealso
@@ -22,9 +21,7 @@
 #' @importFrom jsonlite parse_json
 #'
 #' @export
-
-
-decode_token <- function(jwt) {
+decode_token <- function(jwt = ices_token()) {
 
   json <-
     rawToChar(
@@ -36,15 +33,4 @@ decode_token <- function(jwt) {
   claims <- jsonlite::parse_json(json)
 
   claims
-}
-
-token_expiration <- function(jwt) {
-  claims <- decode_token(jwt)
-
-  as.POSIXct(claims$exp, origin = "1970-01-01")
-}
-
-token_user <- function(jwt) {
-  claims <- decode_token(jwt)
-  claims$sub
 }
