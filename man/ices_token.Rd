@@ -4,7 +4,7 @@
 \alias{ices_token}
 \title{ices_token}
 \usage{
-ices_token(username = NULL, password = NULL, ...)
+ices_token(username = NULL, password = NULL, refresh = FALSE, ...)
 }
 \arguments{
 \item{username}{the ices username that you require a token for,
@@ -13,6 +13,9 @@ Default: NULL, which results in getOption("ices.username")}
 \item{password}{the ices username that you require a token for,
 Default: NULL, which results in a dialogue box request for the
 password}
+
+\item{refresh}{should the token be refreshed to update new claims
+for example}
 
 \item{...}{not yet used}
 }

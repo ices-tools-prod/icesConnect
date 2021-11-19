@@ -7,6 +7,8 @@
 #' @param password the ices username that you require a token for,
 #'   Default: NULL, which results in a dialogue box request for the
 #'   password
+#' @param refresh should the token be refreshed to update new claims
+#'   for example
 #' @param ... not yet used
 #'
 #' @return character scalar, the token
@@ -26,7 +28,7 @@
 #' @importFrom keyring key_get key_set_with_value
 #'
 #' @export
-ices_token <- function(username = NULL, password = NULL, ...) {
+ices_token <- function(username = NULL, password = NULL, refresh = FALSE, ...) {
 
   if (is.null(username)) {
     username <- getOption("ices.username")
@@ -49,7 +51,7 @@ ices_token <- function(username = NULL, password = NULL, ...) {
 
   valid_token <- FALSE
   token <- ""
-  if (has_token(username)) {
+  if (!refresh && has_token(username)) {
     token <- token_get_from_keyring(username)
 
     # add 10s to system time so we have time to perform the request
