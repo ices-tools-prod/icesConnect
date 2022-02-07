@@ -5,6 +5,7 @@
 #' @param type the type of request to make, GET, POST or PATCH
 #' @param url PARAM_DESCRIPTION
 #' @param body optional body of request
+#' @param encode If the body is a named list, how should it be encoded?
 #' @param username the ices username to perform the request as,
 #'   Default: getOption("ices.username")
 #' @param retry PARAM_DESCRIPTION, Default: TRUE
@@ -32,6 +33,7 @@
 ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
                         url,
                         body = NULL,
+                        encode = c("multipart", "form", "json", "raw"),
                         username = NULL,
                         retry = TRUE,
                         quiet = FALSE,
@@ -61,7 +63,7 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
     list(
       url,
       body = body,
-      encode = "json" # only needed when body present
+      encode = encode
     )
 
   if (nzchar(jwt)) {
@@ -89,7 +91,7 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
     # try again - sometimes the server seems to return 404 on the
     # first request
     message("Server not responding, doing one retry.")
-    ices_get_jwt(url, retry = FALSE)
+    resp <- do.call(HTTPFUN, args)
   }
 
   msg_401 <-

@@ -1,6 +1,6 @@
 Package: icesConnect
 Title: Provides User Tokens for Access to Serveral ICES Web Services
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R:
     person(given = "Colin",
            family = "Millar",
@@ -13,6 +13,5 @@ Description: Provides user tokens for ICES web services that require
 Imports: whoami, keyring, httr, base64enc, jsonlite, getPass
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2

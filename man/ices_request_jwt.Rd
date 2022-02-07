@@ -18,6 +18,7 @@ ices_get_jwt(
 ices_post_jwt(
   url,
   body = list(),
+  encode = "json",
   username = NULL,
   retry = TRUE,
   quiet = FALSE,
@@ -27,6 +28,7 @@ ices_post_jwt(
 ices_patch_jwt(
   url,
   body = list(),
+  encode = "json",
   username = NULL,
   retry = TRUE,
   quiet = FALSE,
@@ -37,6 +39,7 @@ ices_request_jwt(
   type = c("GET", "POST", "PATCH"),
   url,
   body = NULL,
+  encode = c("multipart", "form", "json", "raw"),
   username = NULL,
   retry = TRUE,
   quiet = FALSE,
@@ -57,6 +60,8 @@ Default: getOption("ices.username")}
 \item{verbose}{should the http request return verbose output}
 
 \item{body}{optional body of request}
+
+\item{encode}{If the body is a named list, how should it be encoded?}
 
 \item{type}{the type of request to make, GET, POST or PATCH}
 
