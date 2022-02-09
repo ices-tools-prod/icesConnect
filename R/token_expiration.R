@@ -24,5 +24,5 @@
 token_expiration <- function(jwt = ices_token()) {
   claims <- decode_token(jwt)
 
-  as.POSIXct(claims$exp, origin = "1970-01-01")
+  claims$expiration
 }

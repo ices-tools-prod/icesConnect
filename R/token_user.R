@@ -23,5 +23,5 @@
 #' @export
 token_user <- function(jwt = ices_token()) {
   claims <- decode_token(jwt)
-  claims$sub
+  claims$username
 }
