@@ -53,6 +53,12 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
       message("using token for user ICES\\", token_user(jwt))
     }
   } else if (nzchar(jwt)) {
+    # check token is valid
+    token_contents <- try(decode_token(jwt), silent = TRUE)
+    if (inherits(x, "try-error")) {
+      warning("supplied token is not valid, or username not set, please see ?set_username.")
+      return(NULL)
+    }
     if (!quiet) {
       message("using user supplied token for user ICES\\", token_user(jwt))
     }

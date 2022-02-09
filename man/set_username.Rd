@@ -23,7 +23,7 @@ to your RProfile file, see, usually '~/.Rprofile', see
 \code{\link[base]{Startup}} for more information.
 }
 \examples{
-\dontrun{
+\donttest{
 set_username("myusername")
 }
 

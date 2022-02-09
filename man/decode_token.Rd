@@ -31,15 +31,15 @@ Return the expiration date of the token
 What user is this token for
 }
 \examples{
-\dontrun{
+\donttest{
 decode_token()
 }
 
-\dontrun{
+\donttest{
 token_expiration()
 }
 
-\dontrun{
+\donttest{
 token_user()
 }
 
