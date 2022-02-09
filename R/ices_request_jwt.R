@@ -55,7 +55,7 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
   } else if (nzchar(jwt)) {
     # check token is valid
     token_contents <- try(decode_token(jwt), silent = TRUE)
-    if (inherits(x, "try-error")) {
+    if (inherits(token_contents, "try-error")) {
       warning("supplied token is not valid, or username not set, please see ?set_username.")
       return(NULL)
     }
