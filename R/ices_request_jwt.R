@@ -52,7 +52,7 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
     if (!quiet) {
       message("using token for user ICES\\", token_user(jwt))
     }
-  } else {
+  } else if (nzchar(jwt)) {
     if (!quiet) {
       message("using user supplied token for user ICES\\", token_user(jwt))
     }
