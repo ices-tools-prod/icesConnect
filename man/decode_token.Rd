@@ -15,6 +15,8 @@ token_user(jwt = ices_token())
 }
 \arguments{
 \item{jwt}{a javascript web token got by running \code{ices_token()}}
+
+\item{formatted}{should formated output be returned}
 }
 \value{
 list of claims
