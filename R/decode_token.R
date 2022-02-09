@@ -3,7 +3,7 @@
 #' Decodes the token to allow inspection of claims
 #'
 #' @param jwt a javascript web token got by running `ices_token()`
-#' @param formatted should formated output be returned
+#' @param formatted should formatted output be returned
 #'
 #' @return list of claims
 #'

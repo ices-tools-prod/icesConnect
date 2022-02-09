@@ -19,7 +19,7 @@ Set the ICES user or logon name that will be used for requests
 \details{
 To set this permanently, add the line:
 \code{options(ices.username = "your ices user name")}
-to your RProfile file, see, usually '~/.Rprofile', see
+to your '.Rprofile' file, see, usually '~/.Rprofile', see
 \code{\link[base]{Startup}} for more information.
 }
 \examples{

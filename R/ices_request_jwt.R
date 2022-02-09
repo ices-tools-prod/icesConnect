@@ -3,12 +3,12 @@
 #' Perform a get request to a url using a javascript web token for authentication
 #'
 #' @param type the type of request to make, GET, POST or PATCH
-#' @param url PARAM_DESCRIPTION
+#' @param url the url to make the request to
 #' @param body optional body of request
 #' @param encode If the body is a named list, how should it be encoded?
 #' @param username the ices username to perform the request as,
 #'   Default: getOption("ices.username")
-#' @param retry PARAM_DESCRIPTION, Default: TRUE
+#' @param retry if initial request fails, should a retry be made, Default: TRUE
 #' @param quiet suppress informative messages to the console
 #' @param verbose should the http request return verbose output
 #' @param jwt option to supply a token bypassing the ices_token() route, if "" no token is used

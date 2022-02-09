@@ -51,12 +51,12 @@ ices_request_jwt(
 )
 }
 \arguments{
-\item{url}{PARAM_DESCRIPTION}
+\item{url}{the url to make the request to}
 
 \item{username}{the ices username to perform the request as,
 Default: getOption("ices.username")}
 
-\item{retry}{PARAM_DESCRIPTION, Default: TRUE}
+\item{retry}{if initial request fails, should a retry be made, Default: TRUE}
 
 \item{quiet}{suppress informative messages to the console}
 
