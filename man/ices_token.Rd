@@ -26,7 +26,7 @@ character scalar, the token
 Stores a user token in the system keyring
 }
 \examples{
-\donttest{
+\dontrun{
 ices_token()
 }
 

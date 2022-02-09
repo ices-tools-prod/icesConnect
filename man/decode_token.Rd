@@ -7,7 +7,7 @@
 \alias{token_user}
 \title{Decode token}
 \usage{
-decode_token(jwt = ices_token())
+decode_token(jwt = ices_token(), formatted = TRUE)
 
 token_expiration(jwt = ices_token())
 
@@ -31,15 +31,15 @@ Return the expiration date of the token
 What user is this token for
 }
 \examples{
-\donttest{
+\dontrun{
 decode_token()
 }
 
-\donttest{
+\dontrun{
 token_expiration()
 }
 
-\donttest{
+\dontrun{
 token_user()
 }
 

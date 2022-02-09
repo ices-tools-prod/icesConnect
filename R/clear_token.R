@@ -8,7 +8,7 @@
 #' @return no return value
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' clear_token()
 #' }
 #'

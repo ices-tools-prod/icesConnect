@@ -17,7 +17,7 @@ no return value
 Deletes the token from the key ring.
 }
 \examples{
-\donttest{
+\dontrun{
 clear_token()
 }
 

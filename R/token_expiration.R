@@ -7,7 +7,7 @@
 #' @return POSIXct date time
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' token_expiration()
 #' }
 #'

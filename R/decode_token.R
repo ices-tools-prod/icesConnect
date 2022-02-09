@@ -7,7 +7,7 @@
 #' @return list of claims
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' decode_token()
 #' }
 #'
@@ -21,7 +21,7 @@
 #' @importFrom jsonlite parse_json
 #'
 #' @export
-decode_token <- function(jwt = ices_token()) {
+decode_token <- function(jwt = ices_token(), formatted = TRUE) {
 
   json <-
     rawToChar(
