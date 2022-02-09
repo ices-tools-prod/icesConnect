@@ -8,7 +8,7 @@
 #' @return invisible value: the previous username that was set
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' set_username("myusername")
 #' }
 #'

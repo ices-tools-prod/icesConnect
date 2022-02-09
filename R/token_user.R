@@ -7,7 +7,7 @@
 #' @return string, user name
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' token_user()
 #' }
 #'

@@ -7,7 +7,7 @@
 #' @return list of claims
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' decode_token()
 #' }
 #'

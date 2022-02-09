@@ -3,13 +3,15 @@
 ices_get_jwt <- function(url,
                           username = NULL,
                           retry = TRUE, quiet = FALSE,
-                          verbose = FALSE) {
+                          verbose = FALSE,
+                          jwt = NULL) {
 
   out <-
     ices_request_jwt(
       "GET", url,
       body = NULL, encode = "json", username = username,
-      retry = retry, quiet = quiet, verbose = verbose
+      retry = retry, quiet = quiet, verbose = verbose,
+      jwt = jwt
     )
 
   return(out)
@@ -20,12 +22,14 @@ ices_get_jwt <- function(url,
 ices_post_jwt <- function(url, body = list(), encode = "json",
                           username = NULL,
                           retry = TRUE, quiet = FALSE,
-                          verbose = FALSE) {
+                          verbose = FALSE,
+                          jwt = NULL) {
   out <-
     ices_request_jwt(
       "POST", url,
       body = body, encode = encode, username = username,
-      retry = retry, quiet = quiet, verbose = verbose
+      retry = retry, quiet = quiet, verbose = verbose,
+      jwt = jwt
     )
 
   return(out)
@@ -36,12 +40,14 @@ ices_post_jwt <- function(url, body = list(), encode = "json",
 ices_patch_jwt <- function(url, body = list(), encode = "json",
                           username = NULL,
                           retry = TRUE, quiet = FALSE,
-                          verbose = FALSE) {
+                          verbose = FALSE,
+                          jwt = NULL) {
   out <-
     ices_request_jwt(
       "PATCH", url,
       body = body, encode = encode, username = username,
-      retry = retry, quiet = quiet, verbose = verbose
+      retry = retry, quiet = quiet, verbose = verbose,
+      jwt = jwt
     )
 
   return(out)

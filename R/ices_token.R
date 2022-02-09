@@ -14,7 +14,7 @@
 #' @return character scalar, the token
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ices_token()
 #' }
 #'

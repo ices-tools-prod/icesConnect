@@ -11,12 +11,12 @@
 #' @param retry PARAM_DESCRIPTION, Default: TRUE
 #' @param quiet suppress informative messages to the console
 #' @param verbose should the http request return verbose output
-#' @param jwt option to supply a token bypassing the ices_token() route
+#' @param jwt option to supply a token bypassing the ices_token() route, if "" no token is used
 #'
 #' @return httr response object
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # this function is interactive and asks the user for a password
 #' ices_request_jwt("GET", "https://taf.ices.dk/vms/api/gearwidths")
 #' ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")

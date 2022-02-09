@@ -12,7 +12,8 @@ ices_get_jwt(
   username = NULL,
   retry = TRUE,
   quiet = FALSE,
-  verbose = FALSE
+  verbose = FALSE,
+  jwt = NULL
 )
 
 ices_post_jwt(
@@ -22,7 +23,8 @@ ices_post_jwt(
   username = NULL,
   retry = TRUE,
   quiet = FALSE,
-  verbose = FALSE
+  verbose = FALSE,
+  jwt = NULL
 )
 
 ices_patch_jwt(
@@ -32,7 +34,8 @@ ices_patch_jwt(
   username = NULL,
   retry = TRUE,
   quiet = FALSE,
-  verbose = FALSE
+  verbose = FALSE,
+  jwt = NULL
 )
 
 ices_request_jwt(
@@ -59,13 +62,13 @@ Default: getOption("ices.username")}
 
 \item{verbose}{should the http request return verbose output}
 
+\item{jwt}{option to supply a token bypassing the ices_token() route, if "" no token is used}
+
 \item{body}{optional body of request}
 
 \item{encode}{If the body is a named list, how should it be encoded?}
 
 \item{type}{the type of request to make, GET, POST or PATCH}
-
-\item{jwt}{option to supply a token bypassing the ices_token() route}
 }
 \value{
 httr response object
@@ -74,7 +77,7 @@ httr response object
 Perform a get request to a url using a javascript web token for authentication
 }
 \examples{
-\dontrun{
+\donttest{
 # this function is interactive and asks the user for a password
 ices_request_jwt("GET", "https://taf.ices.dk/vms/api/gearwidths")
 ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
