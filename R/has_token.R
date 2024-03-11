@@ -1,11 +1,8 @@
 
-#' @importFrom keyring key_list
 has_token <- function(username) {
-  keys <- keyring::key_list()
+  user_files <- list.files(config_dir())
 
-  if (nrow(keys)) {
-    return(paste0(username, "_1") %in% keys$username[keys$service == "ices_token"])
-  }
-
-  FALSE
+  return(
+    length(user_files) && paste0(username, ".dcf") %in% user_files
+  )
 }

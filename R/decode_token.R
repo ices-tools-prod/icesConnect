@@ -14,7 +14,6 @@
 #'
 #' @seealso
 #'  \code{\link[whoami]{username}}
-#'  \code{\link[keyring]{key_get}}
 #'
 #' @rdname decode_token
 #'

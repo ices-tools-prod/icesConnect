@@ -1,28 +1,33 @@
 token_get_from_keyring <- function(username) {
-  usernames <- grep(paste0(username, "_[0-9]+"), keyring::key_list()$username, value = TRUE)
-  token <- paste(sapply(sort(usernames), keyring::key_get, service = "ices_token"), collapse = "")
+  user_token <-
+    read.dcf(
+      file.path(config_dir(), paste0(username, ".dcf")),
+      fields = "token"
+    )
 
-  token
+  c(user_token)
 }
 
 token_set_from_keyring <- function(token, username) {
-  if (nchar(token) > 2500) {
-    token <-
-      substring(
-        token,
-        seq(1, nchar(token), by = 2500),
-        seq(1, nchar(token), by = 2500) - 1 + 2500
-      )
-  }
+  user_info <- list(
+    username = username,
+    token = token,
+    token_type = "ices_token"
+  )
 
-  for (i in seq_along(token)) {
-    # set token in keyring
-    keyring::key_set_with_value(
-      service = "ices_token",
-      username = paste0(username, "_", i),
-      password = token[i]
-    )
-  }
+  write.dcf(
+    user_info,
+    file.path(config_dir(), paste0(username, ".dcf"))
+  )
 
   invisible(NULL)
+}
+
+#' @importFrom tools R_user_dir
+config_dir <- function() {
+  path <- R_user_dir("icesConnect", "config")
+  # ensure exists
+  sapply(path, dir.create, showWarnings = FALSE, recursive = TRUE)
+
+  path
 }

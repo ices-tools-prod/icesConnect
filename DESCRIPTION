@@ -1,6 +1,6 @@
 Package: icesConnect
 Title: Provides User Tokens for Access to ICES Web Services
-Version: 1.0.0
+Version: 1.1.0
 Authors@R:
     person(given = "Colin",
            family = "Millar",
@@ -10,10 +10,10 @@ Description: Provides user tokens for ICES web services that require
   authentication and authorization.  Web services covered by this
   package are ICES VMS database, the ICES DATSU web services, and the
   ICES SharePoint site <https://www.ices.dk/data/tools/Pages/WebServices.aspx>.
-Imports: whoami, keyring, httr, base64enc, jsonlite, getPass
+Imports: whoami, httr, base64enc, jsonlite, getPass
 License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.1
 URL: https://www.ices.dk/data/tools/Pages/WebServices.aspx, https://github.com/ices-tools-prod/icesConnect
 BugReports: https://github.com/ices-tools-prod/icesConnect/issues

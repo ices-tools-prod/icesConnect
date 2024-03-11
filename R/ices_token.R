@@ -20,12 +20,10 @@
 #'
 #' @seealso
 #'  \code{\link[whoami]{username}}
-#'  \code{\link[keyring]{key_get}}
 #'
 #' @rdname ices_token
 #'
 #' @importFrom whoami username
-#' @importFrom keyring key_get key_set_with_value
 #'
 #' @export
 ices_token <- function(username = NULL, password = NULL, refresh = FALSE, ...) {

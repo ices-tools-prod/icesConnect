@@ -48,11 +48,8 @@ token_user()
 }
 \seealso{
 \code{\link[whoami]{username}}
-\code{\link[keyring]{key_get}}
 
 \code{\link[whoami]{username}}
-\code{\link[keyring]{key_get}}
 
 \code{\link[whoami]{username}}
-\code{\link[keyring]{key_get}}
 }

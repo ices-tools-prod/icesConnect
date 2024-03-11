@@ -14,12 +14,10 @@
 #'
 #' @seealso
 #'  \code{\link[whoami]{username}}
-#'  \code{\link[keyring]{key_get}}
 #'
 #' @rdname clear_token
 #'
 #' @importFrom whoami username
-#' @importFrom keyring key_delete
 #'
 #' @export
 clear_token <- function(username = getOption("ices.username")) {
@@ -28,14 +26,7 @@ clear_token <- function(username = getOption("ices.username")) {
     username <- whoami::username()
   }
 
-  usernames <-
-    grep(
-      paste0(username, "_[0-9]+"), keyring::key_list()$username,
-      value = TRUE
-    )
+  user_files <- list.files(config_dir(), full.names = TRUE)
 
-  for (i in seq_along(usernames)) {
-    keyring::key_delete("ices_token", username = usernames[i])
-  }
-
+  unlink(user_files[grep(paste0(username, ".dcf"), user_files)])
 }
