@@ -4,16 +4,17 @@ Status](http://r-pkg.org/badges/version/icesConnect)](https://cran.r-project.org
 Monthly](http://cranlogs.r-pkg.org/badges/icesConnect)](https://cran.r-project.org/package=icesConnect)
 [![CRAN
 Total](http://cranlogs.r-pkg.org/badges/grand-total/icesConnect)](https://cran.r-project.org/package=icesConnect)
-[![License](https://img.shields.io/badge/license-GPL%20\(%3E%3D%202\)-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![License](https://img.shields.io/badge/license-GPL%20(%3E%3D%202)-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 [<img align="right" alt="ICES Logo" width="17%" height="17%" src="http://ices.dk/_layouts/15/1033/images/icesimg/iceslogo.png">](http://ices.dk)
 
 ### icesConnect
 
-icesConnect provides user tokens for ICES web services that require
-authentication and authorization. Web services covered by this package
-are ICES VMS database, the ICES DATSU web services, and the ICES
-SharePoint site <https://www.ices.dk/data/tools/Pages/WebServices.aspx>
+icesConnect provides GET, POST and PUT functions for users whishing to
+connect to ICES web services. The package provides the option to use
+tokens for ICES web services that require authentication and
+authorization. The token can be fetched using the users, username and
+password, or by setting the token manually.
 
 icesConnect is implemented as an [R](https://www.r-project.org) package
 and available on [CRAN](https://cran.r-project.org/package=icesConnect).
@@ -38,7 +39,7 @@ library(icesConnect)
 
 ### Examples
 
-To perform a get request:
+To perform a normal get request:
 
 ``` r
 ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths", jwt = "")
@@ -51,12 +52,13 @@ ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths", jwt = "")
     ## OK (HTTP 200).
 
     ## Response [https://taf.ices.dk/vms/api/gearwidths]
-    ##   Date: 2022-10-27 13:00
+    ##   Date: 2024-09-09 14:44
     ##   Status: 200
     ##   Content-Type: application/json; charset=utf-8
     ##   Size: 3.72 kB
 
-To perform a get request using a token.
+To perform a get request using a token, it is recommended to set your
+username first.
 
 ``` r
 ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
@@ -79,15 +81,12 @@ you encounter problems or have suggestions for future versions.
 The current development version can be installed using:
 
 ``` r
-# Enable repository from ices-tools-prod
-options(repos = c(
-  icestoolsprod = "https://ices-tools-prod.r-universe.dev",
-  CRAN = "https://cloud.r-project.org"
-))
-
 # Download and install icesConnect in R
-install.packages("icesConnect")
-
-# Browse the icesConnect manual pages
-help(package = "icesConnect")
+install.packages(
+  "icesConnect",
+  repos = c(
+    icestoolsprod = "https://ices-tools-prod.r-universe.dev",
+    CRAN = "https://cloud.r-project.org"
+    )
+)
 ```
