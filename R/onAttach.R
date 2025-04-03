@@ -1,4 +1,4 @@
-.onLoad <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) {
 
   # default package options
   username <- suppressMessages(get_username())

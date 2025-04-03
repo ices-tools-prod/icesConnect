@@ -8,20 +8,9 @@
 #' @return invisible value: the previous username that was set
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' set_username("myusername")
 #' }
-#'
-#' @details
-#'
-#' To set this permanently, add the line:
-#' \code{options(ices.username = "your ices user name")}
-#' to your '.Rprofile' file, see, usually '~/.Rprofile', see
-#' \code{\link[base]{Startup}} for more information.
-#'
-#' @seealso
-#'  \code{\link[base]{options}}
-#'  \code{\link[base]{getOption}}
 #'
 #' @rdname set_username
 #'
