@@ -27,5 +27,8 @@
 #'
 #' @export
 set_username <- function(username) {
-  options(ices.username = username)
+  write.dcf(
+    list(username = username),
+    file.path(config_dir(), "username.dcf")
+  )
 }

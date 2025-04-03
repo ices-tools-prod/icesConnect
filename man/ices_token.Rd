@@ -31,6 +31,3 @@ ices_token()
 }
 
 }
-\seealso{
-\code{\link[whoami]{username}}
-}

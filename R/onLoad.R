@@ -1,13 +1,11 @@
 .onLoad <- function(libname, pkgname) {
 
   # default package options
-  opts <-
-    c(
-      "ices.username" = "NULL"
-    )
-  # set only those not previouslyt set
-  for (i in setdiff(names(opts), names(options()))) {
-    eval(parse(text = paste0("options(", i, "=", opts[i], ")")))
+  username <- suppressMessages(get_username())
+  if (is.null(username)) {
+    packageStartupMessage("icesConnect running as anonymous user, set your ICES username using:\n\ticesConnect::set_username(<add username here>)")
+  } else {
+    packageStartupMessage("icesConnect running as ICES user: ", username)
   }
 
   invisible()

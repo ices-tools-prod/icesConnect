@@ -12,19 +12,17 @@
 #' clear_token()
 #' }
 #'
-#' @seealso
-#'  \code{\link[whoami]{username}}
 #'
 #' @rdname clear_token
 #'
-#' @importFrom whoami username
 #'
 #' @export
-clear_token <- function(username = getOption("ices.username")) {
+clear_token <- function(username = get_username()) {
   if (is.null(username)) {
-    # NULL means use system username
-    username <- whoami::username()
+    return (NULL)
   }
+
+  message("Deleting token for user ICES\\", username)
 
   user_files <- list.files(config_dir(), full.names = TRUE)
 
