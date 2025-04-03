@@ -18,33 +18,12 @@
 #' ices_token()
 #' }
 #'
-#' @seealso
-#'  \code{\link[whoami]{username}}
-#'
 #' @rdname ices_token
 #'
-#' @importFrom whoami username
-#'
 #' @export
-ices_token <- function(username = NULL, password = NULL, refresh = FALSE, ...) {
-
+ices_token <- function(username = get_username(), password = NULL, refresh = FALSE, ...) {
   if (is.null(username)) {
-    username <- getOption("ices.username")
-    if (is.null(username)) {
-      # NULL means use system username
-      username <- whoami::username()
-      not.usermessaged <-
-        is.null(getOption("ices.usermessaged")) ||
-          !getOption("ices.usermessaged")
-      if (not.usermessaged) {
-        options(ices.usermessaged = TRUE)
-        ## message to user about adding username to options
-        message(
-          "using system username: ", username,
-          "\nConsider adding a default username using:\n\ticesConnect::set_username(<add username here>)"
-        )
-      }
-    }
+    return(NULL)
   }
 
   valid_token <- FALSE

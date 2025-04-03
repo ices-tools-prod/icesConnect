@@ -2,6 +2,7 @@
 
 export(clear_token)
 export(decode_token)
+export(get_username)
 export(ices_get)
 export(ices_get_jwt)
 export(ices_patch_jwt)
@@ -22,4 +23,3 @@ importFrom(httr,status_code)
 importFrom(httr,stop_for_status)
 importFrom(jsonlite,parse_json)
 importFrom(tools,R_user_dir)
-importFrom(whoami,username)

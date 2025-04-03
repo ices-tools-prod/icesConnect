@@ -1,4 +1,6 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+# icesConnect 1.1.1 (2025-04-03)
+
+* convert to holding token in DCF file, like rstudio connect
 
 # icesConnect 1.0.0 (2022-02-09)
 

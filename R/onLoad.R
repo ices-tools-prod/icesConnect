@@ -5,7 +5,7 @@
     c(
       "ices.username" = "NULL"
     )
-  # set only those not previouslyt set
+  # set only those not previously set
   for (i in setdiff(names(opts), names(options()))) {
     eval(parse(text = paste0("options(", i, "=", opts[i], ")")))
   }

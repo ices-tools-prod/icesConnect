@@ -4,7 +4,7 @@
 \alias{ices_token}
 \title{ices_token}
 \usage{
-ices_token(username = NULL, password = NULL, refresh = FALSE, ...)
+ices_token(username = get_username(), password = NULL, refresh = FALSE, ...)
 }
 \arguments{
 \item{username}{the ices username that you require a token for,
@@ -30,7 +30,4 @@ Stores a user token in the system keyring
 ices_token()
 }
 
-}
-\seealso{
-\code{\link[whoami]{username}}
 }

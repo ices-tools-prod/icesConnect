@@ -10,7 +10,7 @@ Description: Provides user tokens for ICES web services that require
   authentication and authorization.  Web services covered by this
   package are ICES VMS database, the ICES DATSU web services, and the
   ICES SharePoint site <https://www.ices.dk/data/tools/Pages/WebServices.aspx>.
-Imports: whoami, httr, base64enc, jsonlite, getPass
+Imports: httr, base64enc, jsonlite, getPass
 License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
