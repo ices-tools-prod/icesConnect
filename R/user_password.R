@@ -1,10 +1,10 @@
 
-#' @importFrom getPass getPass
+#' @importFrom askpass askpass
 
-user_password <- function(msg) {
+user_password <- function(prompt) {
   res <- NULL
   while (is.null(res)) {
-    res <- getPass::getPass(msg = msg)
+    res <- askpass::askpass(prompt = prompt)
   }
   res
 }

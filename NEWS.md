@@ -1,3 +1,8 @@
+# icesConnect 1.1.3 (2025-04-03)
+
+* remove dependency on askPass
+
+
 # icesConnect 1.1.1 (2025-04-03)
 
 * convert to holding token in DCF file, like rstudio connect
