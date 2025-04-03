@@ -80,6 +80,10 @@ ices_request_jwt(
 
 \item{verbose}{should the http request return verbose output}
 
+\item{content}{logical, if TRUE the content of the response is returned, if FALSE the httr response object is returned}
+
+\item{use_token}{logical, if TRUE the token is used, if FALSE the token is not used}
+
 \item{username}{the ices username to perform the request as,
 Default: getOption("ices.username")}
 

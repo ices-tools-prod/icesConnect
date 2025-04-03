@@ -12,6 +12,8 @@
 #' @param quiet suppress informative messages to the console
 #' @param verbose should the http request return verbose output
 #' @param jwt option to supply a token bypassing the ices_token() route, if "" no token is used
+#' @param content logical, if TRUE the content of the response is returned, if FALSE the httr response object is returned
+#' @param use_token logical, if TRUE the token is used, if FALSE the token is not used
 #'
 #' @return httr response object
 #'
@@ -20,6 +22,10 @@
 #' # this function is interactive and asks the user for a password
 #' ices_request_jwt("GET", "https://taf.ices.dk/vms/api/gearwidths")
 #' ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
+#'
+#' the top level function
+#' ices_get("https://taf.ices.dk/vms/api/gearwidths", content = FALSE, use_token = TRUE)
+#' ices_get("https://taf.ices.dk/vms/api/gearwidths", content = TRUE)
 #' }
 #' @seealso
 #'  \code{\link[icesConnect]{ices_token}}
