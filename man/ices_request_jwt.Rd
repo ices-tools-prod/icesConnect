@@ -45,7 +45,8 @@ ices_post(
   retry = TRUE,
   verbose = FALSE,
   content = TRUE,
-  use_token = TRUE
+  use_token = TRUE,
+  encode = "multipart"
 )
 
 ices_post_jwt(

@@ -1,3 +1,8 @@
+# icesConnect 1.1.4 (2025-04-30)
+
+* allow encoding to be set in ices_post()
+
+
 # icesConnect 1.1.3 (2025-04-03)
 
 * remove dependency on askPass
