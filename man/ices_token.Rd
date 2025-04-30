@@ -8,7 +8,7 @@ ices_token(username = NULL, password = NULL, refresh = FALSE, ...)
 }
 \arguments{
 \item{username}{the ices username that you require a token for,
-Default: NULL, which results in getOption("ices.username")}
+Default: NULL, which results in \code{getOption("ices.username")}}
 
 \item{password}{the ices username that you require a token for,
 Default: NULL, which results in a dialogue box request for the

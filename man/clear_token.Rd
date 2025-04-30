@@ -8,7 +8,7 @@ clear_token(username = get_username())
 }
 \arguments{
 \item{username}{the ices username that you require a token for,
-Default: getOption("ices.username")}
+Default: \code{getOption("ices.username")}}
 }
 \value{
 no return value

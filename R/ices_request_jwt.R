@@ -7,15 +7,15 @@
 #' @param body optional body of request
 #' @param encode If the body is a named list, how should it be encoded?
 #' @param username the ices username to perform the request as,
-#'   Default: getOption("ices.username")
+#'   Default: \code{getOption("ices.username")}
 #' @param retry if initial request fails, should a retry be made, Default: TRUE
 #' @param quiet suppress informative messages to the console
 #' @param verbose should the http request return verbose output
 #' @param jwt option to supply a token bypassing the ices_token() route, if "" no token is used
-#' @param content logical, if TRUE the content of the response is returned, if FALSE the httr response object is returned
+#' @param content logical, if TRUE the content of the response is returned, if FALSE the http response object is returned
 #' @param use_token logical, if TRUE the token is used, if FALSE the token is not used
 #'
-#' @return httr response object
+#' @return http response object
 #'
 #' @examples
 #' \dontrun{

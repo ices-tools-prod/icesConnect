@@ -81,12 +81,12 @@ ices_request_jwt(
 
 \item{verbose}{should the http request return verbose output}
 
-\item{content}{logical, if TRUE the content of the response is returned, if FALSE the httr response object is returned}
+\item{content}{logical, if TRUE the content of the response is returned, if FALSE the http response object is returned}
 
 \item{use_token}{logical, if TRUE the token is used, if FALSE the token is not used}
 
 \item{username}{the ices username to perform the request as,
-Default: getOption("ices.username")}
+Default: \code{getOption("ices.username")}}
 
 \item{jwt}{option to supply a token bypassing the ices_token() route, if "" no token is used}
 
@@ -97,7 +97,7 @@ Default: getOption("ices.username")}
 \item{type}{the type of request to make, GET, POST or PATCH}
 }
 \value{
-httr response object
+http response object
 }
 \description{
 Perform a get request to a url using a javascript web token for authentication

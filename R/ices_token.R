@@ -3,7 +3,7 @@
 #' Stores a user token in the system keyring
 #'
 #' @param username the ices username that you require a token for,
-#'   Default: NULL, which results in getOption("ices.username")
+#'   Default: NULL, which results in \code{getOption("ices.username")}
 #' @param password the ices username that you require a token for,
 #'   Default: NULL, which results in a dialogue box request for the
 #'   password

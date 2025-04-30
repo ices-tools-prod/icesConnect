@@ -10,11 +10,11 @@
 
 # icesConnect 1.1.1 (2025-04-03)
 
-* convert to holding token in DCF file, like rstudio connect
+* convert to holding token in DCF file
 
 # icesConnect 1.0.0 (2022-02-09)
 
-- Same as previous version.
+* Same as previous version.
 
 
 # icesConnect 0.0.0.9007 (2022-02-09)

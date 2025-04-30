@@ -10,7 +10,7 @@ Total](http://cranlogs.r-pkg.org/badges/grand-total/icesConnect)](https://cran.r
 
 ### icesConnect
 
-icesConnect provides GET, POST and PUT functions for users whishing to
+icesConnect provides GET, POST and PUT functions for users wishing to
 connect to ICES web services. The package provides the option to use
 tokens for ICES web services that require authentication and
 authorization. The token can be fetched using the users, username and
@@ -52,7 +52,7 @@ ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths", jwt = "")
     ## OK (HTTP 200).
 
     ## Response [https://taf.ices.dk/vms/api/gearwidths]
-    ##   Date: 2024-09-09 14:44
+    ##   Date: 2025-04-30 16:09
     ##   Status: 200
     ##   Content-Type: application/json; charset=utf-8
     ##   Size: 3.72 kB
@@ -64,10 +64,9 @@ username first.
 ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
 ```
 
-The first time this function is called, or if the curretnly stored token
-has expired the user will be asked to enter thier password. This
-password is the password use to access ICES resources, such as the ICES
-sharepoint.
+The first time this function is called, or if the currently stored token
+has expired the user will be instructed how to set or update their
+token.
 
 ### Development
 

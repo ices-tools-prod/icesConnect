@@ -3,7 +3,7 @@
 #' Deletes the token from the key ring.
 #'
 #' @param username the ices username that you require a token for,
-#'   Default: getOption("ices.username")
+#'   Default: \code{getOption("ices.username")}
 #'
 #' @return no return value
 #'

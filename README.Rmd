@@ -13,7 +13,7 @@ output:
 
 ### icesConnect
 
-icesConnect provides GET, POST and PUT functions for users whishing to
+icesConnect provides GET, POST and PUT functions for users wishing to
 connect to ICES web services.  The package provides the option to use
 tokens for ICES web services that require authentication and authorization.
 The token can be fetched using the users, username and password, or
@@ -59,10 +59,8 @@ username first.
 ```{r, eval = FALSE}
 ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
 ```
-The first time this function is called, or if the curretnly stored
-token has expired the user will be asked to enter thier password.
-This password is the password use to access ICES resources, such as
-the ICES sharepoint.
+The first time this function is called, or if the currently stored token
+has expired the user will be instructed how to set or update their token.
 
 ### Development
 

@@ -2,7 +2,7 @@
 #'
 #' Set the ICES user or logon name that will be used for requests
 #'
-#' @param username the ices username you use to login to SharePoint
+#' @param username the ices username you use to login to the ICES SharePoint
 #'   for example.
 #'
 #' @return invisible value: the previous username that was set
