@@ -14,7 +14,7 @@ get_username()
 set_username(username)
 }
 \arguments{
-\item{username}{the ices username you use to login to SharePoint
+\item{username}{the ices username you use to login to the ICES SharePoint
 for example.}
 }
 \value{

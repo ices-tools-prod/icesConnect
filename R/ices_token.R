@@ -26,9 +26,10 @@ ices_token <- function(username = NULL, password = NULL, refresh = FALSE, ...) {
     username <- get_username()
     if (is.null(username)) {
       warning(
-        "Username not set correctly, see ?icesConnect::set_username for more details",
+        "Username not set correctly, see ?icesConnect::set_username for more details"
       )
-      return(NULL)
+      # return empty string so request will be sent with no token
+      return(invisible(""))
     }
   }
 
@@ -55,10 +56,11 @@ ices_token <- function(username = NULL, password = NULL, refresh = FALSE, ...) {
         encode = "json"
       )
 
-    if (httr::status_code(ret) == 200) {
+    if (httr::status_code(ret) == 200 && httr::content(ret) != 401) {
       token_set_from_keyring(httr::content(ret)$token, username)
       token <- token_get_from_keyring(username)
     } else {
+      warning("Token request failed, check your username and password")
       token <- ""
     }
   }
