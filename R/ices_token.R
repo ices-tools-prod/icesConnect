@@ -56,13 +56,21 @@ ices_token <- function(username = NULL, password = NULL, refresh = FALSE, ...) {
         encode = "json"
       )
 
-    if (httr::status_code(ret) == 200 && httr::content(ret) != 401) {
-      token_set_from_keyring(httr::content(ret)$token, username)
-      token <- token_get_from_keyring(username)
+    # Fixed this line - just check status code
+    if (httr::status_code(ret) == 200) {
+      content <- httr::content(ret)
+      if (!is.null(content$token)) {
+        icesConnect:::token_set_from_keyring(content$token, username)
+        token <- icesConnect:::token_get_from_keyring(username)
+      } else {
+        warning("Token request failed, check your username and password")
+        token <- ""
+      }
     } else {
       warning("Token request failed, check your username and password")
       token <- ""
     }
+  }
   }
 
   invisible(token)
