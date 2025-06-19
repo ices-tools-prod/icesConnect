@@ -12,9 +12,6 @@
 #' decode_token()
 #' }
 #'
-#' @seealso
-#'  \code{\link[whoami]{username}}
-#'
 #' @rdname decode_token
 #'
 #' @importFrom base64enc base64decode
@@ -22,6 +19,10 @@
 #'
 #' @export
 decode_token <- function(jwt = ices_token(), formatted = TRUE) {
+
+  if (jwt == "") {
+    return(list())
+  }
 
   json <-
     rawToChar(
@@ -33,14 +34,14 @@ decode_token <- function(jwt = ices_token(), formatted = TRUE) {
   claims <- jsonlite::parse_json(json)
 
   if (formatted) {
+    expiration <- as.POSIXct(claims$exp, origin = "1970-01-01")
+    time_diff <- difftime(expiration, Sys.time(), units = "days")
+
     claims <-
       list(
-        sharepoint = gsub("SP_", "", grep("SP_", names(claims), value = TRUE)),
-        github = gsub("GH_", "", grep("GH_", names(claims), value = TRUE)),
-        username = claims$sub,
-        email = claims$`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`,
-        github_username = claims$GitHubUserName,
-        expiration = as.POSIXct(claims$exp, origin = "1970-01-01")
+        user = claims$Email,
+        expiration = expiration,
+        time_to_expiration = round(time_diff, 2)
       )
   }
 

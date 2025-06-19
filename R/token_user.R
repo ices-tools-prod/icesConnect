@@ -1,18 +1,15 @@
-#' Return username for a token
+#' Return user for a token
 #'
 #' What user is this token for
 #'
 #' @param jwt a javascript web token got by running `ices_token()`
 #'
-#' @return string, user name
+#' @return string, user
 #'
 #' @examples
 #' \dontrun{
 #' token_user()
 #' }
-#'
-#' @seealso
-#'  \code{\link[whoami]{username}}
 #'
 #' @rdname decode_token
 #'
@@ -22,5 +19,5 @@
 #' @export
 token_user <- function(jwt = ices_token()) {
   claims <- decode_token(jwt)
-  claims$username
+  claims$user
 }

@@ -1,23 +1,14 @@
 #' Set your ICES username
 #'
-#' Set the ICES user or logon name that will be used for requests
+#' Back compatability function that does nothing.
 #'
-#' @param username the ices username you use to login to the ICES SharePoint
-#'   for example.
+#' @param ... only here for back compatability, does nothing
 #'
-#' @return invisible value: the previous username that was set
-#'
-#' @examples
-#' \dontrun{
-#' set_username("myusername")
-#' }
+#' @return invisible NULL
 #'
 #' @rdname set_username
 #'
 #' @export
-set_username <- function(username) {
-  write.dcf(
-    list(username = username),
-    file.path(config_dir(), "username.dcf")
-  )
+set_username <- function(...) {
+  invisible(NULL)
 }

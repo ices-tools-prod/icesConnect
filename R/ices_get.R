@@ -3,15 +3,15 @@
 #'
 #' @importFrom httr content
 ices_get <- function(url, retry = TRUE, quiet = FALSE, verbose = FALSE,
-  content = TRUE, use_token = FALSE) {
+  content = TRUE, use_token = FALSE, jwt = NULL) {
   resp <-
     ices_get_jwt(
       url,
       retry = retry, quiet = quiet, verbose = verbose,
-      jwt = if (use_token) NULL else ""
+      jwt = if (use_token) jwt else ""
     )
 
-  if (content) {
+  if (content && !is.null(resp)) {
     content(resp, simplifyVector = TRUE)
   } else {
     resp

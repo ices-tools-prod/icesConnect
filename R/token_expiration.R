@@ -11,9 +11,6 @@
 #' token_expiration()
 #' }
 #'
-#' @seealso
-#'  \code{\link[whoami]{username}}
-#'
 #' @rdname decode_token
 #'
 #' @importFrom base64enc base64decode

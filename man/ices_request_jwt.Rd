@@ -16,23 +16,16 @@ ices_get(
   quiet = FALSE,
   verbose = FALSE,
   content = TRUE,
-  use_token = FALSE
-)
-
-ices_get_jwt(
-  url,
-  username = NULL,
-  retry = TRUE,
-  quiet = FALSE,
-  verbose = FALSE,
+  use_token = FALSE,
   jwt = NULL
 )
+
+ices_get_jwt(url, retry = TRUE, quiet = FALSE, verbose = FALSE, jwt = NULL)
 
 ices_patch_jwt(
   url,
   body = list(),
   encode = "json",
-  username = NULL,
   retry = TRUE,
   quiet = FALSE,
   verbose = FALSE,
@@ -53,7 +46,6 @@ ices_post_jwt(
   url,
   body = list(),
   encode = "json",
-  username = NULL,
   retry = TRUE,
   quiet = FALSE,
   verbose = FALSE,
@@ -65,7 +57,6 @@ ices_request_jwt(
   url,
   body = NULL,
   encode = c("multipart", "form", "json", "raw"),
-  username = NULL,
   retry = TRUE,
   quiet = FALSE,
   verbose = FALSE,
@@ -84,9 +75,6 @@ ices_request_jwt(
 \item{content}{logical, if TRUE the content of the response is returned, if FALSE the http response object is returned}
 
 \item{use_token}{logical, if TRUE the token is used, if FALSE the token is not used}
-
-\item{username}{the ices username to perform the request as,
-Default: \code{getOption("ices.username")}}
 
 \item{jwt}{option to supply a token bypassing the ices_token() route, if "" no token is used}
 

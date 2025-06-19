@@ -1,11 +1,17 @@
 .onAttach <- function(libname, pkgname) {
 
   # default package options
-  username <- suppressMessages(get_username())
-  if (is.null(username)) {
-    packageStartupMessage("icesConnect running as anonymous user, set your ICES username using:\n\ticesConnect::set_username(<add username here>)")
+  user <-
+    suppressMessages(
+      suppressWarnings(
+        token_user()
+      )
+    )
+
+  if (is.null(user)) {
+    packageStartupMessage("icesConnect running with no token.")
   } else {
-    packageStartupMessage("icesConnect running as ICES user: ", username)
+    packageStartupMessage("icesConnect running as: ", user)
   }
 
   invisible()

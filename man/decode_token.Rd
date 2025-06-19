@@ -23,7 +23,7 @@ list of claims
 
 POSIXct date time
 
-string, user name
+string, user
 }
 \description{
 Decodes the token to allow inspection of claims
@@ -45,11 +45,4 @@ token_expiration()
 token_user()
 }
 
-}
-\seealso{
-\code{\link[whoami]{username}}
-
-\code{\link[whoami]{username}}
-
-\code{\link[whoami]{username}}
 }

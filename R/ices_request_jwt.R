@@ -6,8 +6,6 @@
 #' @param url the url to make the request to
 #' @param body optional body of request
 #' @param encode If the body is a named list, how should it be encoded?
-#' @param username the ices username to perform the request as,
-#'   Default: \code{getOption("ices.username")}
 #' @param retry if initial request fails, should a retry be made, Default: TRUE
 #' @param quiet suppress informative messages to the console
 #' @param verbose should the http request return verbose output
@@ -40,7 +38,6 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
                         url,
                         body = NULL,
                         encode = c("multipart", "form", "json", "raw"),
-                        username = NULL,
                         retry = TRUE,
                         quiet = FALSE,
                         verbose = FALSE,
@@ -54,19 +51,19 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
   }
 
   if (is.null(jwt)) {
-    jwt <- ices_token(username)
+    jwt <- ices_token()
     if (!quiet && nzchar(jwt)) {
-      message("using token for user ICES\\", token_user(jwt))
+      message("using token for user: ", token_user(jwt))
     }
   } else if (nzchar(jwt)) {
     # check token is valid
     token_contents <- try(decode_token(jwt), silent = TRUE)
     if (inherits(token_contents, "try-error")) {
-      warning("supplied token is not valid, or username not set, please see ?set_username.")
+      warning("supplied token is not valid, please visit: https://data.ices.dk/token.")
       return(NULL)
     }
     if (!quiet) {
-      message("using user supplied token for user ICES\\", token_user(jwt))
+      message("using user supplied token for user: ", token_user(jwt))
     }
   }
 

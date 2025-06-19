@@ -1,3 +1,8 @@
+# icesConnect 1.2.0 (2025-06-19)
+
+* switch to using Azure tokens
+* remove dependency on askpass
+
 # icesConnect 1.1.4 (2025-04-30)
 
 * allow encoding to be set in ices_post()
