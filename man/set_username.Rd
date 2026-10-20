@@ -13,5 +13,7 @@ set_username(...)
 invisible NULL
 }
 \description{
-Back compatability function that does nothing.
+Back compatability function that does nothing. A username is no longer
+needed: tokens are created at \url{https://data.ices.dk/token} and stored
+using \code{\link[=set_token]{set_token()}}.
 }

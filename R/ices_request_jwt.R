@@ -13,20 +13,23 @@
 #' @param content logical, if TRUE the content of the response is returned, if FALSE the http response object is returned
 #' @param use_token logical, if TRUE the token is used, if FALSE the token is not used
 #'
-#' @return http response object
+#' @return http response object, or NULL if the request could not be made,
+#'   for example if there is no internet connection or the token is not valid.
+#'   For `ices_get()` and `ices_post()` with `content = TRUE`, the parsed
+#'   content of the response, or NULL if the request was not successful.
 #'
 #' @examples
 #' \dontrun{
-#' # this function is interactive and asks the user for a password
-#' ices_request_jwt("GET", "https://taf.ices.dk/vms/api/gearwidths")
-#' ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
+#' # requests using a token, set the token first using set_token()
+#' ices_request_jwt("GET", "https://data.ices.dk/vms/api/gearwidths")
+#' ices_get_jwt("https://data.ices.dk/vms/api/gearwidths")
 #'
-#' the top level function
-#' ices_get("https://taf.ices.dk/vms/api/gearwidths", content = FALSE, use_token = TRUE)
-#' ices_get("https://taf.ices.dk/vms/api/gearwidths", content = TRUE)
+#' # the top level function
+#' ices_get("https://data.ices.dk/vms/api/gearwidths", content = FALSE, use_token = TRUE)
+#' ices_get("https://data.ices.dk/vms/api/gearwidths", content = TRUE)
 #' }
 #' @seealso
-#'  \code{\link[icesConnect]{ices_token}}
+#'  \code{\link[icesConnect]{ices_token}}, \code{\link[icesConnect]{set_token}}
 #'  \code{\link[httr]{GET}},\code{\link[httr]{add_headers}},\code{\link[httr]{stop_for_status}},\code{\link[httr]{status_code}}
 #' @rdname ices_request_jwt
 #'
@@ -57,8 +60,8 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
     }
   } else if (nzchar(jwt)) {
     # check token is valid
-    token_contents <- try(decode_token(jwt), silent = TRUE)
-    if (inherits(token_contents, "try-error")) {
+    token_contents <- suppressWarnings(decode_token(jwt))
+    if (!length(token_contents)) {
       warning("supplied token is not valid, please visit: https://data.ices.dk/token.")
       return(NULL)
     }
@@ -87,8 +90,22 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
     args <- c(args, list(httr::verbose(info = TRUE)))
   }
 
-  # read url contents
-  resp <- do.call(HTTPFUN, args)
+  # read url contents, failing gracefully if the request can not be made
+  # (e.g. no internet connection, server not available)
+  request <- function() {
+    tryCatch(
+      do.call(HTTPFUN, args),
+      error = function(e) {
+        message("Request failed: ", conditionMessage(e))
+        NULL
+      }
+    )
+  }
+
+  resp <- request()
+  if (is.null(resp)) {
+    return(NULL)
+  }
 
   # check return code
   if (!quiet) {
@@ -100,22 +117,26 @@ ices_request_jwt <- function(type = c("GET", "POST", "PATCH"),
     # try again - sometimes the server seems to return 404 on the
     # first request
     message("Server not responding, doing one retry.")
-    resp <- do.call(HTTPFUN, args)
+    resp <- request()
+    if (is.null(resp)) {
+      return(NULL)
+    }
   }
 
   msg_401 <-
     paste0(
       "You don't have access to this resource.\n",
-      "Invalid or missing token. Please run:\n",
-      "    icesConnect::ices_token()\n",
-      "to create your personal access token.\n"
+      "Invalid or missing token. Please log in at:\n",
+      "    https://data.ices.dk/token\n",
+      "and run the R code shown there to set your personal access token.\n"
     )
 
   msg_403 <-
     paste0(
-      "You don't have access to this resource. Please run:\n",
-      "    icesConnect::ices_token()\n",
-      "to create or update your personal access token.\n"
+      "You don't have access to this resource. If your token is out of date,\n",
+      "please log in at:\n",
+      "    https://data.ices.dk/token\n",
+      "and run the R code shown there to update your personal access token.\n"
     )
 
   tryCatch(httr::stop_for_status(resp),

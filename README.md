@@ -13,8 +13,7 @@ Total](http://cranlogs.r-pkg.org/badges/grand-total/icesConnect)](https://cran.r
 icesConnect provides GET, POST and PUT functions for users wishing to
 connect to ICES web services. The package provides the option to use
 tokens for ICES web services that require authentication and
-authorization. The token can be fetched using the users, username and
-password, or by setting the token manually.
+authorization.
 
 icesConnect is implemented as an [R](https://www.r-project.org) package
 and available on [CRAN](https://cran.r-project.org/package=icesConnect).
@@ -42,31 +41,42 @@ library(icesConnect)
 To perform a normal get request:
 
 ``` r
-ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths", jwt = "")
+ices_get_jwt("https://data.ices.dk/vms/api/gearwidths", jwt = "")
 ```
 
-    ## GETing ... https://taf.ices.dk/vms/api/gearwidths
+    ## GETing ... https://data.ices.dk/vms/api/gearwidths
 
     ## no token used
 
     ## OK (HTTP 200).
 
-    ## Response [https://taf.ices.dk/vms/api/gearwidths]
-    ##   Date: 2025-04-30 16:09
+    ## Response [https://data.ices.dk/vms/api/gearwidths]
+    ##   Date: 2026-10-20 19:37
     ##   Status: 200
     ##   Content-Type: application/json; charset=utf-8
     ##   Size: 3.72 kB
 
-To perform a get request using a token, it is recommended to set your
-username first.
+To perform a get request using a token, first get a token by logging in
+at <https://data.ices.dk/token>. The page shows R code to copy into your
+R session, which stores the token, for example:
 
 ``` r
-ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
+set_token("<token copied from https://data.ices.dk/token>")
 ```
 
-The first time this function is called, or if the currently stored token
-has expired the user will be instructed how to set or update their
-token.
+The token is then used for requests to ICES web services that need one:
+
+``` r
+ices_get_jwt("https://data.ices.dk/vms/api/gearwidths")
+```
+
+Tokens can not be refreshed from R. When a token has expired, the user
+is instructed to get a new one from <https://data.ices.dk/token>. To see
+who the stored token is for and when it expires:
+
+``` r
+decode_token()
+```
 
 ### Development
 

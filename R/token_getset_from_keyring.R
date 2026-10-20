@@ -8,16 +8,19 @@ token_get_from_keyring <- function(...) {
   c(user_token)
 }
 
+# the R code given at https://data.ices.dk/token calls this function
+# directly, with the username as a second argument, so keep the ...
 token_set_from_keyring <- function(token, ...) {
   user_info <- list(
     token = token,
     token_type = "ices_token"
   )
 
-  write.dcf(
-    user_info,
-    file.path(config_dir(), "token.dcf")
-  )
+  token_file <- file.path(config_dir(), "token.dcf")
+  write.dcf(user_info, token_file)
+
+  # the token should only be readable by the user
+  Sys.chmod(token_file, mode = "0600")
 
   invisible(NULL)
 }

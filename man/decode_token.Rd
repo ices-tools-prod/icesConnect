@@ -19,7 +19,8 @@ token_user(jwt = ices_token())
 \item{formatted}{should formatted output be returned}
 }
 \value{
-list of claims
+list of claims, or an empty list if the token is empty or can not
+be decoded
 
 POSIXct date time
 

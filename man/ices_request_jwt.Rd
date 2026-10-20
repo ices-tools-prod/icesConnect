@@ -85,23 +85,26 @@ ices_request_jwt(
 \item{type}{the type of request to make, GET, POST or PATCH}
 }
 \value{
-http response object
+http response object, or NULL if the request could not be made,
+for example if there is no internet connection or the token is not valid.
+For \code{ices_get()} and \code{ices_post()} with \code{content = TRUE}, the parsed
+content of the response, or NULL if the request was not successful.
 }
 \description{
 Perform a get request to a url using a javascript web token for authentication
 }
 \examples{
 \dontrun{
-# this function is interactive and asks the user for a password
-ices_request_jwt("GET", "https://taf.ices.dk/vms/api/gearwidths")
-ices_get_jwt("https://taf.ices.dk/vms/api/gearwidths")
+# requests using a token, set the token first using set_token()
+ices_request_jwt("GET", "https://data.ices.dk/vms/api/gearwidths")
+ices_get_jwt("https://data.ices.dk/vms/api/gearwidths")
 
-the top level function
-ices_get("https://taf.ices.dk/vms/api/gearwidths", content = FALSE, use_token = TRUE)
-ices_get("https://taf.ices.dk/vms/api/gearwidths", content = TRUE)
+# the top level function
+ices_get("https://data.ices.dk/vms/api/gearwidths", content = FALSE, use_token = TRUE)
+ices_get("https://data.ices.dk/vms/api/gearwidths", content = TRUE)
 }
 }
 \seealso{
-\code{\link[icesConnect]{ices_token}}
+\code{\link[icesConnect]{ices_token}}, \code{\link[icesConnect]{set_token}}
 \code{\link[httr]{GET}},\code{\link[httr]{add_headers}},\code{\link[httr]{stop_for_status}},\code{\link[httr]{status_code}}
 }

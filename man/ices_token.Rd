@@ -7,17 +7,27 @@
 ices_token(...)
 }
 \arguments{
-\item{...}{not yet used}
+\item{...}{not used, only here for back compatibility}
 }
 \value{
-character scalar, the token
+character scalar, the token, or \code{""} if there is no valid token
 }
 \description{
-Stores a user token in the system keyring
+Returns the user token stored by \code{\link[=set_token]{set_token()}}, if it is present and has
+not expired.
+}
+\details{
+Tokens are created at \url{https://data.ices.dk/token}. Log in, then copy
+the R code shown on the page into your R session to store the token.
+Tokens can not be refreshed from R: when a token expires, get a new one
+from the same page.
 }
 \examples{
 \dontrun{
 ices_token()
 }
 
+}
+\seealso{
+\code{\link[=set_token]{set_token()}} to store a token.
 }

@@ -14,7 +14,7 @@ ices_post <- function(url, body = list(), retry = TRUE, verbose = FALSE, content
     )
 
   if (content) {
-    content(resp, simplifyVector = TRUE)
+    response_content(resp)
   } else {
     resp
   }

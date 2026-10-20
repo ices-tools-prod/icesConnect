@@ -1,23 +1,32 @@
 ## R CMD check results
 
 Checked using
-* using R Under development (unstable) (2025-04-29 r88182 ucrt)
-* using platform: x86_64-w64-mingw32
-* R was compiled by
-    gcc.exe (GCC) 14.2.0
-    GNU Fortran (GCC) 14.2.0
-* running under: Windows Server 2022 x64 (build 20348)
+* R version 4.5.3 (2026-03-11)
+* using platform: x86_64-pc-linux-gnu
+* running under: Ubuntu 24.04.4 LTS
+* using options '--as-cran --run-donttest'
 
-and
+0 errors | 0 warnings | 1 note
 
-* using R version 4.5.0 (2025-04-11 ucrt)
-* using platform: x86_64-w64-mingw32
-* R was compiled by
-    gcc.exe (GCC) 14.2.0
-    GNU Fortran (GCC) 14.2.0
-* running under: Windows Server 2022 x64 (build 20348)
+* checking for future file timestamps ... NOTE
+  unable to verify current time
 
-
-0 errors | 0 warnings | 0 note
+  This note is due to the check machine not being able to reach the time
+  server.
 
 * This is an update of an existing release.
+
+## Comments
+
+* ICES web services now issue user tokens from a web page that requires
+  two-factor authentication, so tokens can no longer be requested from R
+  using a username and password. This release removes that code and adds
+  set_token() to store a token copied from the web page.
+* Functions that use internet resources now fail gracefully, with an
+  informative message, if the resource is not available.
+* The token is only written to the user configuration directory given by
+  tools::R_user_dir(), and only when the user calls set_token().
+
+## Reverse dependencies
+
+Reverse dependencies (icesDatsu, icesSAG, icesSD, icesTAF, icesVocab) were checked.
