@@ -14,6 +14,14 @@ Checked using
   This note is due to the check machine not being able to reach the time
   server.
 
+and on win-builder
+
+* R Under development (unstable) (2026-10-18 r90707 ucrt)
+* using platform: x86_64-w64-mingw32
+* running under: Windows Server 2022 x64 (build 20348)
+
+0 errors | 0 warnings | 0 notes
+
 * This is an update of an existing release.
 
 ## Comments
